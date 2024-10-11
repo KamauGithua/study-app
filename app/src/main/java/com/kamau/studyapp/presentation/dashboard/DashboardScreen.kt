@@ -1,5 +1,7 @@
 package com.kamau.studyapp.presentation.dashboard
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,15 +9,21 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.app.NotificationCompat.Style
+import com.kamau.studyapp.domain.model.Subject
 import com.kamau.studyapp.presentation.components.CountCard
 
 @Composable
@@ -29,7 +37,8 @@ fun DashboardScreen(){
         ) {
             item {
                 CountCardsSection(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(12.dp),
                     subjectCount = 5,
                     studiedHours = "10",
@@ -79,7 +88,30 @@ private fun CountCardsSection(
             count = goalHours
         )
 
-
-
     }
+}
+
+@Composable
+private fun SubjectCountCardSection(
+    modifier: Modifier,
+    subjectList: List<Subject>
+    ){
+    Column(modifier= modifier) {
+        Row (modifier = Modifier
+            .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Text(text = "SUBJECTS",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(start = 12.dp))
+        }
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = "Add Subject"
+            )
+        }
+    }
+
 }
